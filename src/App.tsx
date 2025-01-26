@@ -39,7 +39,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await axios.post('http://localhost:8000/predict', formData);
+      const response = await axios.post('http://127.0.0.1:8000/', formData);
       setResult(response.data);
       setShowModal(true);
     } catch (err) {

@@ -26,7 +26,7 @@ def load_and_train_models():
     global crop_model, price_model, label_encoders
     
     # Load training data
-    df = pd.read_excel(r'C:\Users\anees\Downloads\ml crop\project\backend\data\Advanced_Crop_Prediction_and_Analysis_2024.xlsx')
+    df = pd.read_excel(r'C:\Users\anees\Downloads\ml crop\backend\Advanced_Crop_Prediction_and_Analysis_2024.xlsx')
 
     # Encode categorical variables
     label_encoders = {}
@@ -59,7 +59,7 @@ def home():
 # Load models when the script is run
 if __name__ == "__main__":
     load_and_train_models()  # Load and train models before starting the server
-    logger.info("Flask server is running on http://127.0.0.1:8000")  # Log the server URL
+    logger.info("Flask server is running on http://127.0.0.1:8000/")  # Log the server URL
     app.run(debug=True, port=8000)
 
 @app.route('/predict', methods=['POST'])
