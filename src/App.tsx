@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sprout, Thermometer, Droplets, Voicemail as Soil, CloudRain, Gauge } from 'lucide-react';
+import { Sprout, Thermometer, Droplets, Voicemail as Soil, CloudRain, Gauge, Loader } from 'lucide-react';
 import { Dialog } from '@headlessui/react';
 
 interface PredictionResult {
@@ -59,6 +59,9 @@ function App() {
     setError(null);
 
     try {
+      // Simulate a delay for loading
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Get a random crop from the crops array
       const randomCrop = crops[Math.floor(Math.random() * crops.length)];
       
@@ -280,6 +283,20 @@ function App() {
           Coded by <a href="https://lhcee3.netlify.app" target="_blank" rel="noopener noreferrer" className="text-green-700 hover:text-green-800 font-medium transition-colors">Aneesh</a>
         </p>
       </footer>
+
+      {/* Loading Screen */}
+      {isLoading && (
+        <Dialog
+          open={isLoading}
+          onClose={() => {}}
+          className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div className="bg-white rounded-lg p-6 flex items-center gap-4">
+            <Loader className="h-6 w-6 text-green-600 animate-spin" />
+            <p className="text-lg font-medium text-gray-700">Loading, please wait...</p>
+          </div>
+        </Dialog>
+      )}
 
       {/* Result Modal */}
       <Dialog
